@@ -12,6 +12,8 @@ class Game {
     this.ctx = this.canvas.getContext("2d");
     this.canvas.width = this.width;
     this.canvas.height = this.height;
+    this.points = 0;
+    this.pointsDisplay = document.getElementById("show-points");
   }
 
   print() {
@@ -19,6 +21,16 @@ class Game {
     this.ctx.rect(0, 0, this.width, this.height);
     this.ctx.fillStyle = "rgb(0, 0, 0)";
     this.ctx.fill();
+  }
+
+  reset() {
+    this.points = 0;
+    this.pointsDisplay.innerHTML = this.points;
+  }
+
+  addPoint() {
+    this.points++;
+    this.pointsDisplay.innerHTML = this.points;
   }
 
   update() {

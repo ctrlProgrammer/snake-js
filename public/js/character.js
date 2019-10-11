@@ -32,15 +32,18 @@ export default class Character {
       ) {
         this.addSegment();
         this.apple.generateNewPos();
+        this.game.addPoint();
       }
 
-      if (this.positions[0].x < 0) this.positions[0].x = this.game.canvas.width;
-      if (this.positions[0].y < 0)
-        this.positions[0].y = this.game.canvas.height;
-      if (this.positions[0].x > this.game.canvas.width)
-        this.positions[0].x = 0 - this.size;
-      if (this.positions[0].y > this.game.canvas.height)
-        this.positions[0].y = 0 - this.size;
+      if (
+        this.positions[0].x < 0 ||
+        this.positions[0].y < 0 ||
+        this.positions[0].x > this.game.canvas.width - this.size ||
+        this.positions[0].y > this.game.canvas.height - this.size
+      ) {
+        this.game.reset();
+        this.reset();
+      }
 
       for (var count = 0; count < this.positions.length - 1; count++) {
         this.lastPos[count].x = this.positions[count].x;
@@ -57,6 +60,13 @@ export default class Character {
 
       this.print();
     }, 50);
+  }
+
+  reset() {
+    this.positions = [{ x: 15, y: 15 }];
+    this.lastPos = [{ x: 0, y: 0 }];
+    this.dir = [1, 0];
+    this.apple.generateNewPos();
   }
 
   moveHandler() {
