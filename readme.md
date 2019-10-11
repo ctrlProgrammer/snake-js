@@ -38,10 +38,10 @@ Archivo: main.js
 ```
 config = {
     environment: "production", // default, para desarrolladores
-    fps: 60, // default, lo puedes cambiar a tu gusto
-    width: 60 * 15, // (900px) default, ajuste de pantalla
-    height: 30 * 15, // (450px) default, ajuste de pantalla
-    pixelSize: 15, // default, ajuste de pixel
+    fps: 60, // (60) default, velocidad del juego
+    width: 60 * 15, // (900px) default, ajuste de pantalla ancho
+    height: 30 * 15, // (450px) default, ajuste de pantalla altura
+    pixelSize: 15, // (15) default, ajuste al tamano del pixel
 }
 ```
 
