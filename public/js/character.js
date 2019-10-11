@@ -2,18 +2,18 @@ export default class Character {
   constructor(game, apple) {
     this.game = game;
     this.apple = apple;
-    this.size = 15;
-    this.v = 15;
+    this.size = this.game.pixelSize;
+    this.v = this.game.pixelSize;
     this.color = "rgb(255,255,255)";
     this.dir = [1, 0];
     this.lastPos = [{ x: 0, y: 0 }];
-    this.positions = [{ x: 15, y: 15 }];
+    this.positions = [{ x: this.size, y: this.size }];
   }
 
   print() {
-    this.positions.forEach((rect, index) => {
+    this.positions.forEach(rect => {
       this.game.ctx.beginPath();
-      this.game.ctx.rect(rect.x, rect.y, 15, 15);
+      this.game.ctx.rect(rect.x, rect.y, this.size, this.size);
       this.game.ctx.fillStyle = this.color;
       this.game.ctx.fill();
     });
@@ -63,7 +63,7 @@ export default class Character {
   }
 
   reset() {
-    this.positions = [{ x: 15, y: 15 }];
+    this.positions = [{ x: this.size, y: this.size }];
     this.lastPos = [{ x: 0, y: 0 }];
     this.dir = [1, 0];
     this.apple.generateNewPos();

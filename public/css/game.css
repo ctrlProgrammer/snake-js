@@ -4,8 +4,8 @@
     box-sizing: border-box;
 }
 
-#principal-canvas {
-    border: 1px solid black;
+canvas {
+    border: 3px solid white;
 }
 
 .game-container {

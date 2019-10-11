@@ -3,7 +3,7 @@ export default class Apple {
     this.game = game;
     this.character = character;
     this.pos = { x: 0, y: 0 };
-    this.size = 15;
+    this.size = this.game.pixelSize;
     this.color = "#ff0000";
     this.generateNewPos();
   }
@@ -17,12 +17,16 @@ export default class Apple {
 
   generateNewPos() {
     this.pos.x =
-      Math.floor((Math.random() * (this.game.canvas.width - this.size)) / 15) *
-        15 +
+      Math.floor(
+        (Math.random() * (this.game.canvas.width - this.size)) / this.size
+      ) *
+        this.size +
       this.size;
     this.pos.y =
-      Math.floor((Math.random() * (this.game.canvas.height - this.size)) / 15) *
-        15 +
+      Math.floor(
+        (Math.random() * (this.game.canvas.height - this.size)) / this.size
+      ) *
+        this.size +
       this.size;
   }
 }
