@@ -31,6 +31,20 @@ npm run start
 
 5. Utiliza la URL (http://localhost:xxxx) que obtienes al iniciar el servidor
 
+## Configurar juego
+
+Archivo: main.js
+
+```
+config = {
+    environment: "production", // default, para desarrolladores
+    fps: 60, // default, lo puedes cambiar a tu gusto
+    width: 60 * 15, // (900px) default, ajuste de pantalla
+    height: 30 * 15, // (450px) default, ajuste de pantalla
+    pixelSize: 15, // default, ajuste de pixel
+}
+```
+
 ## Construido con
 
 - JavaScript - Lenguaje principal
