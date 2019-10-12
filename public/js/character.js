@@ -24,6 +24,36 @@ export default class Character {
     this.positions.push({ x: this.positions[0].x, y: this.positions[0].y });
   }
 
+  validateColision(x, y) {
+    var coll = false;
+    for (var count = 1; count < this.positions.length - 1; count++) {
+      if (this.positions[count].x == x && this.positions[count].y == y) {
+        coll = true;
+      }
+    }
+    return coll ? true : false;
+  }
+
+  calcAppleNewPos() {
+    var x =
+      Math.floor(
+        (Math.random() * (this.game.canvas.width - this.apple.size)) /
+          this.apple.size
+      ) *
+        this.apple.size +
+      this.apple.size;
+    var y =
+      Math.floor(
+        (Math.random() * (this.game.canvas.height - this.apple.size)) /
+          this.apple.size
+      ) *
+        this.apple.size +
+      this.apple.size;
+
+    if (this.validateColision(x, y)) this.calcAppleNewPos();
+    else this.apple.generateNewPos(x, y);
+  }
+
   move() {
     setInterval(() => {
       if (
@@ -31,7 +61,7 @@ export default class Character {
         this.positions[0].y == this.apple.pos.y
       ) {
         this.addSegment();
-        this.apple.generateNewPos();
+        this.calcAppleNewPos();
         this.game.addPoint();
       }
 
@@ -39,7 +69,8 @@ export default class Character {
         this.positions[0].x < 0 ||
         this.positions[0].y < 0 ||
         this.positions[0].x > this.game.canvas.width - this.size ||
-        this.positions[0].y > this.game.canvas.height - this.size
+        this.positions[0].y > this.game.canvas.height - this.size ||
+        this.validateColision(this.positions[0].x, this.positions[0].y)
       ) {
         this.game.reset();
         this.reset();
@@ -66,7 +97,7 @@ export default class Character {
     this.positions = [{ x: this.size, y: this.size }];
     this.lastPos = [{ x: 0, y: 0 }];
     this.dir = [1, 0];
-    this.apple.generateNewPos();
+    this.calcAppleNewPos();
   }
 
   moveHandler() {

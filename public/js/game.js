@@ -68,6 +68,7 @@ export default class Game {
 
   run() {
     this.print();
+    this.character.calcAppleNewPos();
     this.character.print();
     this.character.moveHandler();
     this.character.move();

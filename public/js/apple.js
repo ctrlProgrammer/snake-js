@@ -1,11 +1,9 @@
 export default class Apple {
-  constructor(game, character) {
+  constructor(game) {
     this.game = game;
-    this.character = character;
     this.pos = { x: 0, y: 0 };
     this.size = this.game.pixelSize;
     this.color = "#ff0000";
-    this.generateNewPos();
   }
 
   print() {
@@ -15,18 +13,9 @@ export default class Apple {
     this.game.ctx.fill();
   }
 
-  generateNewPos() {
-    this.pos.x =
-      Math.floor(
-        (Math.random() * (this.game.canvas.width - this.size)) / this.size
-      ) *
-        this.size +
-      this.size;
-    this.pos.y =
-      Math.floor(
-        (Math.random() * (this.game.canvas.height - this.size)) / this.size
-      ) *
-        this.size +
-      this.size;
+  generateNewPos(x, y) {
+    this.pos.x = x;
+    this.pos.y = y;
+    this.print();
   }
 }
